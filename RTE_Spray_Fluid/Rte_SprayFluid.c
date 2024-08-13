@@ -1,4 +1,6 @@
 #include<Rte_SprayFluid.h>
+#include <stdint.h>
+
 extern bool value_spray;
 
 

@@ -8,7 +8,9 @@
 bool value_spray;
 
 typedef uint8_t Std_ReturnType; 
+
 Std_ReturnType Rte_Read_RP_Fluid_Motor(bool* spray);
+
 Std_ReturnType Rte_Call_R_IO_ActivateSpray(bool spray);	
 
 #endif
