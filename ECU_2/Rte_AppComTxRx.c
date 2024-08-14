@@ -7,9 +7,9 @@
 //message là 1 mảng ký tự 
 //lấy signal ra 
 //trc đó có unpacking
-
+#include <Rte_AppComTxRx.h>
 //nhận cái message, signalgroup
-FUNC(void,RTE_CODE) Rte_COMCbk_igLOT_Message_Speed_Rx(void){
+FUNC(void,RTE_CODE) Rte_COMCbk_igLOT_Signal_Speed_Rx(VAR(void,AUTOMATIC)){
 
     if(Rte_InitState == RTE_STATE_INIT)
     {   
@@ -27,7 +27,7 @@ FUNC(void,RTE_CODE) Rte_COMCbk_igLOT_Message_Speed_Rx(void){
         (void)SetEvent(Acuator Task,Os_CE_Receive_Signal);
     }
 }
-FUNC(void,RTE_CODE) Rte_COMCbk_Message_Spray_Rx(void){
+FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC)){
 
     if(Rte_InitState == RTE_STATE_INIT)
     {   
@@ -35,7 +35,7 @@ FUNC(void,RTE_CODE) Rte_COMCbk_Message_Spray_Rx(void){
         (void)GetSpinlock(Rte_Spinlock_igLOT_Message_Rx);
         
         //struct save spray message signal
-        (void)Com_ReceiveSignal(ComConf_ComSignal_isLOT_Message_Spray_Rx,);
+        (void)Com_ReceiveSignal(ComConf_ComSignal_isLOT_Message_Spray_Rx,value_spray);
         
         (void)ReleaseSpinlock(Rte_Spinlock_igLOT_Message_Rx);
         //only set os event
@@ -43,5 +43,3 @@ FUNC(void,RTE_CODE) Rte_COMCbk_Message_Spray_Rx(void){
     }
 }
 
-//2 callback cho 2 signal 
-//1 callback 
