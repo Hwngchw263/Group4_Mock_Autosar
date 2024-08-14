@@ -20,7 +20,6 @@
 /*----------------------------------------------------------------------------*/
 /* variables                                                                  */
 /*----------------------------------------------------------------------------*/
-extern VAR(uint8, AUTOMATIC) Rte_status;
 
 /*----------------------------------------------------------------------------*/
 /* functions and function style macros                                        */
@@ -29,19 +28,42 @@ extern VAR(uint8, AUTOMATIC) Rte_status;
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_App_ComTxRx(VAR(void, AUTOMATIC));
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_AppDiag_20ms(VAR(void, AUTOMATIC));
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_AppWdgM_20ms(VAR(void, AUTOMATIC));
+extern void Runnable_ReadUserInput_100ms(void);
+extern void Runnable_ProcessWiperMode(void);
+extern void Runnable_ProcessSprayFluid(void);
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : ASWTask_20ms                                                 */
+/* Name        : ProcessTask                                                */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Author      : Group 4                                   */
 /* Note        :                                                              */
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
+TASK(ProcessTask)
+{
+    EventMaskType ev;
+	for(;;)
+	{
+		WaitEvent(RTE_TE_Read_100ms|RTE_CE_WiperMode|RTE_CE_SprayFluidMode);
+		GetEvent(ProcessTask, &ev);
+		ClearEvent(Event& (RTE_TE_Read_100ms|RTE_CE_WiperMode|RTE_CE_SprayFluidMode));
+		if((ev & RTE_TE_Read_100ms) != (EventMaskType)0)
+		{
+			Runnable_ReadUserInput_100ms();		
+		}
+		if((ev & RTE_CE_WiperMode) != (EventMaskType)0)
+		{
+			Runnable_ProcessWiperMode();
+		}
+		if((ev & RTE_CE_SprayFluidMode) != (EventMaskType)0)
+		{
+			Runnable_ProcessSprayFluid();
+		}
+		
+   }
+}

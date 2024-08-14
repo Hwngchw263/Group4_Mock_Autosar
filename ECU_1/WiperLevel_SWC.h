@@ -17,6 +17,6 @@ typedef struct {
     bool sprayActive;       // Spray activation status
 } WiperLeverDataType;
 
-void HandleUserInput(void);
+void Runnable_ReadUserInput_100ms(void);
 
 #endif // WIPERLEVEL_SWC_H

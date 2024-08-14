@@ -2,7 +2,7 @@
 #include "Rte_WiperLevel.h"
 
 // Main function to read binary data and control the wiper and spray
-void HandleUserInput(void) {
+void Runnable_ReadUserInput_100ms(void) {
     int rawData;              // Raw binary data from the input port
     WiperLeverDataType leverData; // Structure to hold the processed data
 

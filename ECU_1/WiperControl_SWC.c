@@ -7,7 +7,7 @@ void WiperControl_Init(void) {
 }
 
 // Main function for the wiper control logic
-void ProcessWiperMode(void) {
+void Runnable_ProcessWiperMode(void) {
     WiperLeverDataType leverData;  // Structure to hold the combined data
 
     // Read the combined wiper mode and spray status from the input port
@@ -47,7 +47,7 @@ void ProcessWiperMode(void) {
     }
 }
 
-void ProcessWiperSpeed(void) {
+void Runnable_ProcessWiperSpeed(void) {
     WiperLeverDataType leverData;  // Structure to hold the combined data
 
     // Read the combined wiper mode and spray status from the input port
