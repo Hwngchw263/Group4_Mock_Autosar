@@ -43,3 +43,74 @@ FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC)){
     }
 }
 
+#define RTE_START_SEC_VAR_INIT
+#include "Rte_MemMap.h"
+VAR(AUTOSAR_uint8, AUTOMATIC) Rte_Read_AppComTxRx_WiperSpeed_Sig_Speed_value;
+#define RTE_STOP_SEC_VAR_INIT
+
+#define RTE_START_SEC_VAR_EcucPartition_0_INIT
+#include "Rte_MemMap.h"
+VAR(Std_ReturnType, AUTOMATIC) Rte_Read_AppComTxRx_WiperSpeed_Sig_Speed_status = RTE_E_NEVER_RECEIVED;
+#define RTE_STOP_SEC_VAR_EcucPartition_0_INIT
+#include "Rte_MemMap.h"
+
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Read_AppComTxRx_AtmReq_AtmReq_Sig_Cmd                    */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
+#define RTE_START_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_WiperSpeed_Sig_Speed( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data ) {
+    VAR(Std_ReturnType, AUTOMATIC) ret_val;
+
+    RTE_Q_LOCK();
+    *data = Rte_Read_AppComTxRx_WiperSpeed_Sig_Speed_value;
+    ret_val = Rte_Read_AppComTxRx_WiperSpeed_Sig_Speed_status;
+    RTE_Q_UNLOCK();
+
+    return ret_val;
+}
+
+
+
+#define RTE_START_SEC_VAR_INIT
+#include "Rte_MemMap.h"
+VAR(AUTOSAR_uint8, AUTOMATIC) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_value;
+#define RTE_STOP_SEC_VAR_INIT
+
+#define RTE_START_SEC_VAR_EcucPartition_0_INIT
+#include "Rte_MemMap.h"
+VAR(Std_ReturnType, AUTOMATIC) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_status = RTE_E_NEVER_RECEIVED;
+#define RTE_STOP_SEC_VAR_EcucPartition_0_INIT
+#include "Rte_MemMap.h"
+
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Read_AppComTxRx_AtmReq_AtmReq_Sig_Cmd                    */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
+#define RTE_START_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_SprayFluid_Sig_Cmd( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data ) {
+    VAR(Std_ReturnType, AUTOMATIC) ret_val;
+
+    RTE_Q_LOCK();
+    *data = Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_value;
+    ret_val = Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_status;
+    RTE_Q_UNLOCK();
+
+    return ret_val;
+}
