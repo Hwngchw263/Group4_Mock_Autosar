@@ -44,6 +44,9 @@ extern void Runnable_SprayFluid(void);
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
+
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_SprayFluid(VAR(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_WiperSpeed(VAR(void, AUTOMATIC))
 TASK(ActuatorTask) {
     EventMaskType ev;
     for(;;)
@@ -53,10 +56,10 @@ TASK(ActuatorTask) {
         ClearEvent(ev);
 
         if (ev & MOTOR_CONTROL_Event) {
-            Runnable_WiperSpeed();
+            Rte_WiperSpeed();
         }
         if (ev & SPRAY_FLUID_Event) {
-            Runnable_SprayFluid();
+            Rte_SprayFluid();
         }
     }
 }
