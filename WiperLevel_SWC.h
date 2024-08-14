@@ -1,7 +1,7 @@
-#ifndef USERCONTROL_H
-#define USERCONTROL_H
+#ifndef WIPERLEVEL_SWC_H
+#define WIPERLEVEL_SWC_H
 
-#include "Rte_Type.h"
+#include <stdbool.h>
 
 // Define possible wiper modes
 typedef enum {
@@ -19,4 +19,4 @@ typedef struct {
 
 void HandleUserInput(void);
 
-#endif // USERCONTROL_H
+#endif // WIPERLEVEL_SWC_H
