@@ -2,7 +2,7 @@
 FUNC(void,SprayFluid_CODE) Runnable_WiperSpeed(VAR(void,AUTOMATIC)){
 	uint8_t speed;
 	//rp port
-	Rte_Read_AppComTxRx_WiperSpeed_Sig_Speed(&speed);
+	Rte_Read_AppComTxRx_R_WiperMotor(&speed);
 	VAR(AUTOSAR_uint16,AUTOMATIC) Duty_Cycle;
 		switch (speed)
 		{

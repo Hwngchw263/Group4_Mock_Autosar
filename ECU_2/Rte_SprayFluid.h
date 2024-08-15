@@ -11,8 +11,8 @@ typedef uint8_t Std_ReturnType;
 
 FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC));
 
-extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray( P2VAR(bool, AUTOMATIC, RTE_APPL_DATA) data );
-#define Rte_Read_SprayFluid_Sig_Spray Rte_Read_AppComTxRx_SprayFluid_Sig_Spray
+extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_R_FluidMotor( P2VAR(bool, AUTOMATIC, RTE_APPL_DATA) data );
+#define Rte_Read_R_FluidMotor Rte_Read_AppComTxRx_R_FluidMotor
 
 
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_SprayFluidDio_R_IO__IoHwAb_Q_DioWriteChannel(P2VAR(AppIo_IoHwAb_Q_DioIdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_DioLevelType, AUTOMATIC) level )
