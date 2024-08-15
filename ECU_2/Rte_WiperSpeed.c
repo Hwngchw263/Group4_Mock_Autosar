@@ -26,16 +26,8 @@ FUNC(void,RTE_CODE) Rte_COMCbk_igLOT_Signal_Speed_Rx(VAR(void,AUTOMATIC)){
 
     if(Rte_InitState == RTE_STATE_INIT)
     {   
-        //multicore
-        (void)GetSpinlock(Rte_Spinlock_Signal_Speed_Rx);
-
-        //struct save speed message signal
-        //PARAMETER 1 : ID signal speed
+        //receive signal
         (void)Com_ReceiveSignal(ComConf_ComSignal_Signal_Speed_Rx,&Rte_Read_AppComTxRx_R_WiperMotor_value);
-        //struct save spray message signal
-
-        
-        (void)ReleaseSpinlock(Rte_Spinlock_Signal_Speed_Rx);
         //only set os event
         (void)SetEvent(Acuator Task,Os_CE_Receive_Signal);
     }

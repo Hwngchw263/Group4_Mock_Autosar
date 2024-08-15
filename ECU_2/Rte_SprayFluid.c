@@ -26,13 +26,8 @@ FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC)){
 
     if(Rte_InitState == RTE_STATE_INIT)
     {   
-        //multicore
-        (void)GetSpinlock(Rte_Spinlock_Signal_Spray_Rx);
-        
-        //struct save spray message signal
+        //receiver signal
         (void)Com_ReceiveSignal(ComConf_ComSignal_Signal_Spray_Rx,&Rte_Read_AppComTxRx_R_FluidMotor_value);
-        
-        (void)ReleaseSpinlock(Rte_Spinlock_Signal_Spray_Rx);
         //only set os event
         (void)SetEvent(Acuator Task,Os_CE_Receive_Signal);
     }
