@@ -104,7 +104,7 @@ VAR(Std_ReturnType, AUTOMATIC) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_status =
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_SprayFluid_Sig_Cmd( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data ) {
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data ) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val;
 
     RTE_Q_LOCK();

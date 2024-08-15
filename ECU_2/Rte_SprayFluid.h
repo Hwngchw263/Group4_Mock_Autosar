@@ -9,10 +9,14 @@ bool value_spray;
 
 typedef uint8_t Std_ReturnType; 
 
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_RP_Fluid_Motor(bool* spray);
+FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC));
 
-//id type : VAR(IOIo_IoHwAb_Q_ActivateSprayIdType, AUTOMATIC) id
-//parameter : P2VAR(AUTOSAR_bool, AUTOMATIC, RTE_APPL_DATA) spray
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_R_IO_SprayToIoHwAb_IoHwAb_Q_ActivateSpray(VAR(AUTOSAR_uint8, AUTOMATIC) id,P2VAR(AUTOSAR_bool, AUTOMATIC, RTE_APPL_DATA) spray);
+extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray( P2VAR(bool, AUTOMATIC, RTE_APPL_DATA) data );
+#define Rte_Read_SprayFluid_Sig_Spray Rte_Read_AppComTxRx_SprayFluid_Sig_Spray
+
+
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_SprayFluidDio_R_IO__IoHwAb_Q_DioWriteChannel(P2VAR(AppIo_IoHwAb_Q_DioIdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_DioLevelType, AUTOMATIC) level )
+
+
 
 #endif

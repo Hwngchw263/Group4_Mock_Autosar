@@ -1,19 +1,68 @@
 #include<Rte_SprayFluid.h>
 #include <stdint.h>
 extern bool value_spray;
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_RP_Fluid_Motor(P2VAR(bool* spray){
-    *spray = value_spray;
+
+
+//call function in the mcu
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_SprayFluidDio_R_IO__IoHwAb_Q_DioWriteChannel(P2VAR(AppIo_IoHwAb_Q_DioIdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_DioLevelType, AUTOMATIC) level )
+{
+    IoHwAb_Q_DioWriteChannelGroup(id,level);
     return RTE_E_OK;
 }
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_R_IO_SprayToIoHwAb_IoHwAb_Q_ActivateSpray(VAR(AUTOSAR_uint8, AUTOMATIC) id,P2VAR(AUTOSAR_bool, AUTOMATIC, RTE_APPL_DATA) spray){
-    VAR(Std_ReturnType, AUTOMATIC) return_value;
-    return_value = ActivateSpray(id,spray);
-    return return_value;
+
+//callback and read to receive data 
+#define RTE_START_SEC_VAR_INIT
+#include "Rte_MemMap.h"
+VAR(bool, AUTOMATIC) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_value;
+#define RTE_STOP_SEC_VAR_INIT
+
+#define RTE_START_SEC_VAR_EcucPartition_0_INIT
+#include "Rte_MemMap.h"
+VAR(Std_ReturnType, AUTOMATIC) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_status = RTE_E_NEVER_RECEIVED;
+#define RTE_STOP_SEC_VAR_EcucPartition_0_INIT
+#include "Rte_MemMap.h"
+
+FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC)){
+
+    if(Rte_InitState == RTE_STATE_INIT)
+    {   
+        //multicore
+        (void)GetSpinlock(Rte_Spinlock_igLOT_Message_Rx);
+        
+        //struct save spray message signal
+        (void)Com_ReceiveSignal(ComConf_ComSignal_isLOT_Message_Spray_Rx,Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_value);
+        
+        (void)ReleaseSpinlock(Rte_Spinlock_igLOT_Message_Rx);
+        //only set os event
+        (void)SetEvent(Acuator Task,Os_CE_Receive_Signal);
+    }
 }
-// FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_R_IO_ActivateSpray(bool spray) {
-//     ActivateSpray(spray);
-//     return RTE_E_OK;
-// }	
+
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Read_AppComTxRx_SprayFluid_Sig_Spray                     */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Note        :                                                              */
+/******************************************************************************/
+#define RTE_START_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_AppComTxRx_SprayFluid_Sig_Spray( P2VAR(bool, AUTOMATIC, RTE_APPL_DATA) data ) {
+    VAR(Std_ReturnType, AUTOMATIC) ret_val;
+
+    RTE_Q_LOCK();
+    *data = Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_value;
+    ret_val = Rte_Read_AppComTxRx_SprayFluid_Sig_Spray_status;
+    RTE_Q_UNLOCK();
+
+    return ret_val;
+}
+
+
+//wrapper runnable	
 
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
@@ -22,7 +71,7 @@ extern FUNC(void,SprayFluid_CODE) Runnable_SprayFluid(VAR(void,AUTOMATIC));
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : Rte_ReadUserInput_100ms                                      */
+/* Name        : Rte_SprayFluid                                               */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
