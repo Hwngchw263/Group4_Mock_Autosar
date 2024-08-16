@@ -6,6 +6,9 @@
 FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC)) {
      WiperLeverDataType leverData;  // Structure to hold the combined data
 
+    // CheckPoint Start 
+    Rte_Call_WdgM_CheckpointReached(SE_TP_ProcessWiperMode, CP_ID_3);
+
     // Read the combined wiper mode and spray status from the input port
     Rte_Read_R_Setting_WiperLeverData(&leverData);
 
@@ -41,10 +44,15 @@ FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC)) {
            Rte_Write_P_ActuatorWiperControl_WiperSpeed(0);
             break;
     }
+    //CheckPoint end
+    Rte_Call_WdgM_CheckpointReached(SE_TP_ProcessWiperMode, CP_ID_4);
 }
 
 FUNC(void, WiperControl_CODE) Runnable_ProcessSprayFluid(VAR(void, AUTOMATIC)) {
      WiperLeverDataType leverData;  // Structure to hold the combined data
+
+    //CheckPoint start
+    Rte_Call_WdgM_CheckpointReached(SE_TP_ProcessSprayFluid, CP_ID_5);
 
     // Read the combined wiper mode and spray status from the input port
     Rte_Read_R_Setting_WiperLeverData(&leverData);
@@ -55,4 +63,6 @@ FUNC(void, WiperControl_CODE) Runnable_ProcessSprayFluid(VAR(void, AUTOMATIC)) {
     } else {
         Rte_Write_P_ActuatorFluidControl_SprayFluid(FALSE);
     }
+    //CheckPoint end
+    Rte_Call_WdgM_CheckpointReached(SE_TP_ProcessSprayFluid, CP_ID_6);
 }

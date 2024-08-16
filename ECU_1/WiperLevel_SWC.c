@@ -6,6 +6,9 @@ FUNC(void, WiperLevelDio_CODE) Runnable_ReadUserInput_100ms(VAR(void, AUTOMATIC)
     int rawData;              // Raw binary data from the input port
     WiperLeverDataType leverData; // Structure to hold the processed data
 
+    //CheckPoint Start
+    Rte_Call_WdgM_CheckpointReached(SE_TP_CarWiperLevelProcessing, CP_ID_1);
+
     /* Start read data from Ecu Abstraaction through RTE */
     // Read the raw binary data from the input port
     Rte_Call_WiperLevelDio_R_IO__IoHwAb_Q_DioReadChannelGroup(1, 4, &rawData);
@@ -14,4 +17,6 @@ FUNC(void, WiperLevelDio_CODE) Runnable_ReadUserInput_100ms(VAR(void, AUTOMATIC)
     leverData.sprayActive = (rawData & 0x04) >> 2;   // Extract bit 2 for spray status
     
     Rte_Write_WiperLevelDio_P_Position_WiperLeverData(leverData);
+    //CheckPoint end
+    Rte_Call_WdgM_CheckpointReached(SE_TP_CarWiperLevelProcessing, CP_ID_2);
 }
