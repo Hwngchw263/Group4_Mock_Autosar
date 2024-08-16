@@ -21,10 +21,10 @@
 /* variables                                                                  */
 /*----------------------------------------------------------------------------*/
 extern VAR(uint8, AUTOMATIC) Rte_status;
-
-/*----------------------------------------------------------------------------*/
-/* functions and function style macros                                        */
-/*----------------------------------------------------------------------------*/
+extern VAR(uint8, AUTOMATIC) SchM_status;
+extern VAR(boolean, AUTOMATIC) RTE_CE_WiperSpeed;
+extern VAR(boolean, AUTOMATIC) RTE_CE_SprayFluidRun;
+extern VAR(uint8, AUTOMATIC) Rte_partition_status_EcucPartition_0;
 
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
@@ -34,29 +34,44 @@ extern void Runnable_SprayFluid(void);
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : ASWTask_20ms                                                 */
+/* Name        : ActuatorTask                                                 */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator(Java)                                   */
+/* Author      : Group 4                                   */
 /* Note        :                                                              */
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
-TASK(ActuatorTask) {
-    EventMaskType ev;
-    for(;;)
-	{
-        WaitEvent(MOTOR_CONTROL_Event|SPRAY_FLUID_Event);
-        GetEvent(ActuatorTask, &ev);
-        ClearEvent(ev);
 
-        if (ev & MOTOR_CONTROL_Event) {
-            Runnable_WiperSpeed();
-        }
-        if (ev & SPRAY_FLUID_Event) {
-            Runnable_SprayFluid();
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_SprayFluid(VAR(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_WiperSpeed(VAR(void, AUTOMATIC))
+
+TASK (ActuatorTask) {
+    VAR(EventMaskType, AUTOMATIC) Event;
+
+    for(;;)
+    {
+        (VAR(void, AUTOMATIC))WaitEvent( Os_CE_Receive_Signal );
+        Event = 0U;
+        (VAR(void, AUTOMATIC))GetEvent( Os_CE_Receive_Signal, &Event );
+
+        if( (Rte_status == RTE_STATUS_RUN) && (Rte_partition_status_EcucPartition_0 == RTE_PARTITION_STATUS_RUNNING) && (SchM_status == SCHM_STATUS_RUN) ) {
+            if( (Event & Os_CE_Receive_Signal) > 0U ) {
+                (VAR(void, AUTOMATIC))ClearEvent( Os_CE_Receive_Signal );
+
+                if ( RTE_CE_WiperSpeed == TRUE ) {
+                        Rte_WiperSpeed();
+                    }
+                if ( RTE_CE_SprayFluidRun == TRUE ) {
+                        Rte_SprayFluid();
+                    }
+            } else {
+              /* No treatment */
+            }
+        } else {
+            (VAR(void, AUTOMATIC))ClearEvent( Event );
         }
     }
 }

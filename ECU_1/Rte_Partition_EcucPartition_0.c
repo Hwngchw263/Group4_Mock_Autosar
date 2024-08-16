@@ -16,7 +16,7 @@
 #include "Os.h"
 #include "Com.h"
 #include "Rte_Internal.h"
-
+  
 /*----------------------------------------------------------------------------*/
 /* variables                                                                  */
 /*----------------------------------------------------------------------------*/
@@ -28,17 +28,17 @@
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
-extern void Runnable_ReadUserInput_100ms(void);
-extern void Runnable_ProcessWiperMode(void);
-extern void Runnable_ProcessSprayFluid(void);
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_ReadUserInput_100ms(VAR(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_ProcessWiperMode(FUNC(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_ProcessSprayFluid(FUNC(void, AUTOMATIC));
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : ProcessTask                                                */
+/* Name        : ProcessTask                                                  */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : Group 4                                   */
+/* Author      : Group 4                                                      */
 /* Note        :                                                              */
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
@@ -54,15 +54,15 @@ TASK(ProcessTask)
 		ClearEvent(Event& (RTE_TE_Read_100ms|RTE_CE_WiperMode|RTE_CE_SprayFluidMode));
 		if((ev & RTE_TE_Read_100ms) != (EventMaskType)0)
 		{
-			Runnable_ReadUserInput_100ms();		
+			Rte_ReadUserInput_100ms();		
 		}
 		if((ev & RTE_CE_WiperMode) != (EventMaskType)0)
 		{
-			Runnable_ProcessWiperMode();
+			Rte_ProcessWiperMode();
 		}
 		if((ev & RTE_CE_SprayFluidMode) != (EventMaskType)0)
 		{
-			Runnable_ProcessSprayFluid();
+			Rte_ProcessSprayFluid();
 		}
 		
    }

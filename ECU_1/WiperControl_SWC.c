@@ -1,13 +1,8 @@
 #include "SWC_WiperControl.h"
 
-// Initialize the wiper control system
-void WiperControl_Init(void) {
-    // Initialization code, if any
-    // For example, set initial state or mode
-}
 
 // Main function for the wiper control logic
-void Runnable_ProcessWiperMode(void) {
+FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC)) {
     WiperLeverDataType leverData;  // Structure to hold the combined data
 
     // Read the combined wiper mode and spray status from the input port
