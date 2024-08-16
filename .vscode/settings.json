@@ -2,5 +2,6 @@
     "files.associations": {
         "rte_wiperlevel_type.h": "c",
         "rte_wiperleveldio.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
