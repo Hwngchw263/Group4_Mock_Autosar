@@ -5,6 +5,10 @@
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 #include "Rte_DataHandleType.h"
 
 /*----------------------------------------------------------------------------*/
@@ -20,4 +24,10 @@ extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_WiperSpeed_R_Spee
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_WiperSpeedDio_R_IO__IoHwAb_Q_PwmSetDutyCycle(P2VAR(AppIo_IoHwAb_Q_DioIdType, AUTOMATIC) id, VAR(AUTOSAR_uint16, AUTOMATIC) duty_cycle )
 #define Rte_Call_R_IO__IoHwAb_Q_PwmSetDutyCycle Rte_Call_WiperSpeedDio_R_IO__IoHwAb_Q_PwmSetDutyCycle
 
-#endif
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#endif /* RTE_WIPERSPEED_H */
+
+/* End of Rte_WiperSpeed.h */

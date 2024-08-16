@@ -26,12 +26,12 @@ extern VAR(boolean, AUTOMATIC) RTE_CE_WiperSpeed;
 extern VAR(boolean, AUTOMATIC) RTE_CE_SprayFluidRun;
 extern VAR(uint8, AUTOMATIC) Rte_partition_status_EcucPartition_0;
 
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
-
+/*----------------------------------------------------------------------------*/
+/* functions and function style macros                                        */
+/*----------------------------------------------------------------------------*/
 extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_SprayFluid(VAR(void, AUTOMATIC));
 extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_WiperSpeed(VAR(void, AUTOMATIC));
+
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */

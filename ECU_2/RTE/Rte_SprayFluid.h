@@ -7,6 +7,10 @@
 
 #include"Rte_DataHandleType.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 /*----------------------------------------------------------------------------*/
 /* function prototype declarations                                            */
 /*----------------------------------------------------------------------------*/
@@ -20,4 +24,10 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_SprayFluidDio_R_IO__IoHw
 #define Rte_Call_R_IO__IoHwAb_Q_DioWriteChannel Rte_Call_SprayFluidDio_R_IO__IoHwAb_Q_DioWriteChannel
 
 
-#endif
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+#endif /* RTE_SPRAYFLUID_H */
+
+/* End of Rte_SprayFluid.h */

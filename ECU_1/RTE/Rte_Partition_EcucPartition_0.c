@@ -26,16 +26,13 @@ extern VAR(uint8, AUTOMATIC) Rte_partition_status_EcucPartition_0;
 extern VAR(boolean, AUTOMATIC) RTE_CE_WiperMode;
 extern VAR(boolean, AUTOMATIC) RTE_CE_SprayFluidMode;
 extern VAR(boolean, AUTOMATIC) RTE_TE_Read_100ms;
+
 /*----------------------------------------------------------------------------*/
 /* functions and function style macros                                        */
 /*----------------------------------------------------------------------------*/
-
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
-extern void Runnable_ReadUserInput_100ms(void);
-extern void Runnable_ProcessWiperMode(void);
-extern void Runnable_ProcessSprayFluid(void);
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_ReadUserInput_100ms(VAR(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_ProcessWiperMode(VAR(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_ProcessSprayFluid(VAR(void, AUTOMATIC));
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
@@ -64,17 +61,17 @@ TASK(ProcessTask)
 				ClearEvent(Os_TE_Wiper_Level_100ms);
 				if( Event & Os_TE_Wiper_Level_100ms)
 				{
-					Runnable_ReadUserInput_100ms();		
+					Rte_ReadUserInput_100ms();		
 				}
 				if(RTE_CE_WiperMode == TRUE)
 				{
-					Runnable_ProcessWiperMode();
+					Rte_ProcessWiperMode();
 					RTE_CE_WiperMode = FALSE;
 				}
 				if(RTE_CE_SprayFluidMode == TRUE)
 				{
-					Runnable_ProcessSprayFluid();
-					RTE_CE_SprayFluidMode = FALSE 
+					Rte_ProcessSprayFluid();
+					RTE_CE_SprayFluidMode = FALSE; 
 				}
 			} else {
               /* No treatment */

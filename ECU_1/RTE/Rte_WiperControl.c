@@ -47,6 +47,8 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_Actuator
 
     return ret_val;
 }
+#define RTE_STOP_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
 
 /******************************************************************************/
 /* ModuleID    :                                                              */
@@ -81,6 +83,8 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_Actuator
 
     return ret_val;
 }
+#define RTE_STOP_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
 
 /******************************************************************************/
 /* ModuleID    :                                                              */
@@ -92,10 +96,53 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_Actuator
 /* Author      : Group 4                                                      */
 /* Note        :                                                              */
 /******************************************************************************/
-#define RTE_STOP_SEC_CODE_EcucPartition_0
+#define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_WiperControl_R_Setting_WiperLeverData( P2VAR(WiperLeverDataType, AUTOMATIC, RTE_APPL_DATA) out) {
     *out = Rte_Read_WiperControl_LevelData;
     return RTE_E_OK;
 }
+#define RTE_STOP_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+
+extern FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC));
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_ProcessWiperMode                                         */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : Group 4                                                      */
+/* Note        :                                                              */
+/******************************************************************************/
+#define RTE_START_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+FUNC(void, RTE_CODE_EcucPartition_0) Rte_ProcessWiperMode(VAR(void, AUTOMATIC)) {
+
+    Runnable_ProcessWiperMode();
+
+}
+#define RTE_STOP_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+
+extern FUNC(void, WiperControl_CODE) Runnable_ProcessSprayFluid(VAR(void, AUTOMATIC));
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_ProcessWiperMode                                         */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : Group 4                                                      */
+/* Note        :                                                              */
+/******************************************************************************/
+#define RTE_START_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+FUNC(void, RTE_CODE_EcucPartition_0) Rte_ProcessSprayFluid(VAR(void, AUTOMATIC)) {
+
+    Runnable_ProcessSprayFluid();
+
+}
+#define RTE_STOP_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
