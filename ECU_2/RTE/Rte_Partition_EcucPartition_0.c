@@ -12,7 +12,7 @@
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 #include "Rte_Type.h"
-
+#include "Rte_DataHandleType.h"
 #include "Os.h"
 #include "Com.h"
 #include "Rte_Internal.h"
@@ -29,8 +29,9 @@ extern VAR(uint8, AUTOMATIC) Rte_partition_status_EcucPartition_0;
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 
-extern void Runnable_WiperSpeed(void);
-extern void Runnable_SprayFluid(void);
+
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_SprayFluid(VAR(void, AUTOMATIC));
+extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_WiperSpeed(VAR(void, AUTOMATIC));
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
@@ -38,15 +39,11 @@ extern void Runnable_SprayFluid(void);
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : Group 4                                   */
+/* Author      : Group 4                                                      */
 /* Note        :                                                              */
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-
-
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_SprayFluid(VAR(void, AUTOMATIC));
-extern FUNC(void, RTE_CODE_EcucPartition_0) Rte_WiperSpeed(VAR(void, AUTOMATIC))
 
 TASK (ActuatorTask) {
     VAR(EventMaskType, AUTOMATIC) Event;
@@ -75,3 +72,11 @@ TASK (ActuatorTask) {
         }
     }
 }
+
+
+#define RTE_STOP_SEC_CODE_EcucPartition_0
+#include "Rte_MemMap.h"
+
+
+
+/* End of Rte_Partition_EcucPartition_0.c */

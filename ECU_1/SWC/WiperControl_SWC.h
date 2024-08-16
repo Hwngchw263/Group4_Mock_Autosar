@@ -1,11 +1,10 @@
 #ifndef WIPER_LEVER_CONTROL_H
 #define WIPER_LEVER_CONTROL_H
 
-#include "Rte_WiperLeverControl.h"  // RTE header for the Wiper Lever Control SWC
-#include "SWC_UserControl.h"
+#include "Rte_WiperLevel_Type.h" 
 
 // Function prototypes
-void Runnable_ProcessWiperMode(void);
-void Runnable_ProcessWiperSpeed(void);
+FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC));
+FUNC(void, WiperControl_CODE) Runnable_ProcessWiperSpeed(VAR(void, AUTOMATIC));
 
 #endif /* WIPER_LEVER_CONTROL_H */

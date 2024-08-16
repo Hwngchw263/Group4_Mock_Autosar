@@ -22,11 +22,7 @@
 /*----------------------------------------------------------------------------*/
 extern VAR(uint8, AUTOMATIC) Rte_status;
 extern VAR(uint8, AUTOMATIC) SchM_status;
-extern VAR(boolean, AUTOMATIC) Rte_periodically_event_activation;
-extern VAR(boolean, AUTOMATIC) SchM_periodically_event_activation;
 extern VAR(uint8, AUTOMATIC) Rte_partition_status_EcucPartition_0;
-extern VAR(uint32, AUTOMATIC) Rte_DisableEventList[83];
-
 extern VAR(boolean, AUTOMATIC) RTE_CE_WiperMode;
 extern VAR(boolean, AUTOMATIC) RTE_CE_SprayFluidMode;
 extern VAR(boolean, AUTOMATIC) RTE_TE_Read_100ms;
@@ -43,11 +39,11 @@ extern void Runnable_ProcessSprayFluid(void);
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : ProcessTask                                                */
+/* Name        : ProcessTask                                                  */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : Group 4                                   */
+/* Author      : Group 4                                                      */
 /* Note        :                                                              */
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
@@ -66,7 +62,7 @@ TASK(ProcessTask)
 		if((Rte_status == RTE_STATUS_RUN) && (Rte_partition_status_EcucPartition_0 == RTE_PARTITION_STATUS_RUNNING) && (SchM_status == SCHM_STATUS_RUN)) {
 			if((ev & Os_TE_Wiper_Level_100ms) > 0U) {
 				ClearEvent(Os_TE_Wiper_Level_100ms);
-				if( RTE_TE_Read_100ms == TRUE)
+				if( ev & RTE_TE_Read_100ms == TRUE)
 				{
 					Runnable_ReadUserInput_100ms();		
 				}
@@ -76,10 +72,13 @@ TASK(ProcessTask)
 				}
 				if(RTE_CE_SprayFluidMode == TRUE)
 				{
-					Runnable_ProcessSprayFluid();
+					Runnable_ProcessSprayFluid(); 
 				}
-			}
-		}
-		
+			} else {
+              /* No treatment */
+            }
+		}  else {
+            (VAR(void, AUTOMATIC))ClearEvent( Event );
+        }
    }
 }
