@@ -1,11 +1,9 @@
 #ifndef RTE_WIPER_CONTROL_H
 #define RTE_WIPER_CONTROL_H
 
-#include "WiperLevel_SWC.h"
-
-#define RTE_E_OK        0x00      
-#define RTE_E_NOT_OK    0x01 
-typedef uint8_t Std_ReturnType;
+#include "Rte_WiperLevel_Type.h"
+#include "Rte_DataHandleType.h"
+#include <stdint.h>
 
 
 

@@ -1,7 +1,10 @@
 {
   "files.associations": {
     "rte_wiperlevel.h": "c",
-    "rte_wiperleveldio.h": "c"
+    "rte_wiperleveldio.h": "c",
+    "wiperlevel_swc.h": "c",
+    "rte_wiperlevel_type.h": "c",
+    "rte_datahandletype.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

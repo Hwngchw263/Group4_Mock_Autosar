@@ -1,13 +1,12 @@
 #include "Rte_WiperControl.h"
 
-bool active;
+boolean active;
 VAR(WiperLeverDataType, AUTOMATIC) Rte_Read_WiperControl_LevelData;
-
 
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : Rte_Write_WiperControl_P_ActuatorFluidControl_SprayFluid       */
+/* Name        : Rte_Write_WiperControl_P_ActuatorFluidControl_SprayFluid     */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
@@ -16,10 +15,11 @@ VAR(WiperLeverDataType, AUTOMATIC) Rte_Read_WiperControl_LevelData;
 /******************************************************************************/
 #define RTE_START_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_ActuatorFluidControl_SprayFluid(VAR(bool, AUTOMATIC) in) {
+
+FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_ActuatorFluidControl_SprayFluid(VAR(boolean, AUTOMATIC) in) {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(bool, AUTOMATIC) tmp_data = in;
+    VAR(boolean, AUTOMATIC) tmp_data = in;
     ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_P_ActuatorFluidControl_SprayFluid, &tmp_data);
     switch( ret ) {
         case COM_SERVICE_NOT_AVAILABLE:
@@ -35,14 +35,11 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_Actuator
 
     return ret_val;
 }
-#define RTE_STOP_SEC_CODE_EcucPartition_0
-#include "Rte_MemMap.h"
-
 
 /******************************************************************************/
 /* ModuleID    :                                                              */
 /* ServiceID   :                                                              */
-/* Name        : Rte_Write_WiperControl_P_ActuatorWiperControl_WiperSpeed       */
+/* Name        : Rte_Write_WiperControl_P_ActuatorWiperControl_WiperSpeed     */
 /* Param       :                                                              */
 /* Return      :                                                              */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
@@ -73,9 +70,18 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperControl_P_Actuator
     return ret_val;
 }
 
+/******************************************************************************/
+/* ModuleID    :                                                              */
+/* ServiceID   :                                                              */
+/* Name        : Rte_Read_WiperControl_R_Setting_WiperLeverData               */
+/* Param       :                                                              */
+/* Return      :                                                              */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : Group 4                                                      */
+/* Note        :                                                              */
+/******************************************************************************/
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
-
 
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_WiperControl_R_Setting_WiperLeverData( P2VAR(WiperLeverDataType, AUTOMATIC, RTE_APPL_DATA) out) {
     *out = Rte_Read_WiperControl_LevelData;

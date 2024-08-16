@@ -18,17 +18,7 @@ FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC)) {
             // Stop the wiper motor
             Rte_Write_P_ActuatorWiperControl_WiperSpeed(0);
             break;
-
-        case WIPER_MODE_INTERMITTENT:
-            // Control wiper motor for intermittent mode
-            // This could involve timing logic, here simplified
-            if (/* timing condition for intermittent wipe */) {
-                Rte_Write_P_ActuatorWiperControl_WiperSpeed(50);
-            } else {
-               Rte_Write_P_ActuatorWiperControl_WiperSpeed(0);
-            }
-            break;
-
+            
         case WIPER_MODE_LOW:
             // Set wiper motor to low speed
            Rte_Write_P_ActuatorWiperControl_WiperSpeed(50);
@@ -49,7 +39,7 @@ FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC)) {
 }
 
 FUNC(void, WiperControl_CODE) Runnable_ProcessSprayFluid(VAR(void, AUTOMATIC)) {
-     WiperLeverDataType leverData;  // Structure to hold the combined data
+    WiperLeverDataType leverData;  // Structure to hold the combined data
 
     //CheckPoint start
     Rte_Call_WdgM_CheckpointReached(SE_TP_ProcessSprayFluid, CP_ID_5);
