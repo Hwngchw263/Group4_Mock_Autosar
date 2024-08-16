@@ -1,4 +1,7 @@
-#include<Rte_SprayFluid.h>
+/*----------------------------------------------------------------------------*/
+/* include headers                                                            */
+/*----------------------------------------------------------------------------*/
+#include"Rte_SprayFluid.h"
 
 /*****************************************************************************************/
 /* ModuleID    :                                                                         */
@@ -71,10 +74,6 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_SprayFluid_R_FluidMotor_
 
     return ret_val;
 }
-
-
-
-
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 

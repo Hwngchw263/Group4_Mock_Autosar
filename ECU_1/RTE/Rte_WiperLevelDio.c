@@ -60,8 +60,8 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperLevelDio_P_Positio
 {
     VAR(WiperLeverDataType, AUTOMATIC) tmp_data = data;
     //Set event
-    RTE_CE_WiperMode == TRUE;
-    RTE_CE_SprayFluidMode == TRUE;
+    RTE_CE_WiperMode = TRUE;
+    RTE_CE_SprayFluidMode = TRUE;
     return RTE_E_OK;
 }
 #define RTE_STOP_SEC_CODE_EcucPartition_0

@@ -1,4 +1,4 @@
-#include<Rte_WiperSpeed.h>
+#include"Rte_WiperSpeed.h"
 
 /*****************************************************************************************/
 /* ModuleID    :                                                                         */
@@ -70,14 +70,6 @@ FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_WiperSpeed_R_SpeedMotor_
 
     return ret_val;
 }
-
-
-
-
-
-
-
-
 #define RTE_STOP_SEC_CODE_EcucPartition_0
 #include "Rte_MemMap.h"
 

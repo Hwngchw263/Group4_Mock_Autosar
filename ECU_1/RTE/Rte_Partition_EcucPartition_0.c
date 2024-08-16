@@ -51,28 +51,30 @@ extern void Runnable_ProcessSprayFluid(void);
 
 TASK(ProcessTask)
 {
-    VAR(EventMaskType, AUTOMATIC) ev;
+    VAR(EventMaskType, AUTOMATIC) Event;
 	
 	for(;;)
 	{
 		(VAR(void, AUTOMATIC))WaitEvent(Os_TE_Wiper_Level_100ms);
 		Event = 0U;
-		(VAR(void, AUTOMATIC))GetEvent(ProcessTask, &ev);
+		(VAR(void, AUTOMATIC))GetEvent(ProcessTask, &Event);
 
 		if((Rte_status == RTE_STATUS_RUN) && (Rte_partition_status_EcucPartition_0 == RTE_PARTITION_STATUS_RUNNING) && (SchM_status == SCHM_STATUS_RUN)) {
-			if((ev & Os_TE_Wiper_Level_100ms) > 0U) {
+			if((Event & Os_TE_Wiper_Level_100ms) > 0U) {
 				ClearEvent(Os_TE_Wiper_Level_100ms);
-				if( ev & RTE_TE_Read_100ms == TRUE)
+				if( Event & Os_TE_Wiper_Level_100ms)
 				{
 					Runnable_ReadUserInput_100ms();		
 				}
 				if(RTE_CE_WiperMode == TRUE)
 				{
 					Runnable_ProcessWiperMode();
+					RTE_CE_WiperMode = FALSE;
 				}
 				if(RTE_CE_SprayFluidMode == TRUE)
 				{
-					Runnable_ProcessSprayFluid(); 
+					Runnable_ProcessSprayFluid();
+					RTE_CE_SprayFluidMode = FALSE 
 				}
 			} else {
               /* No treatment */

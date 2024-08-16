@@ -1,9 +1,15 @@
 #ifndef RTE_SPRAY_FLUID_H
 #define RTE_SPRAY_FLUID_H
-#include <stdint.h>
-#include<stdbool.h>
-#include<Rte_DataHandleType.h>
 
+/*----------------------------------------------------------------------------*/
+/* include headers                                                            */
+/*----------------------------------------------------------------------------*/
+
+#include"Rte_DataHandleType.h"
+
+/*----------------------------------------------------------------------------*/
+/* function prototype declarations                                            */
+/*----------------------------------------------------------------------------*/
 
 FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC));
 
