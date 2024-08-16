@@ -1,6 +1,7 @@
 #include<WiperSpeed_SWC.h>
 FUNC(void,SprayFluid_CODE) Runnable_WiperSpeed(VAR(void,AUTOMATIC)){
 	uint8_t speed;
+	Rte_Call_WdgM_CheckpointReached(SE_TP_WiperSpeed,CP_ID_1);
 	//rp port
 	Rte_Read_AppComTxRx_R_WiperMotor(&speed);
 	VAR(AUTOSAR_uint16,AUTOMATIC) Duty_Cycle;
@@ -21,4 +22,5 @@ FUNC(void,SprayFluid_CODE) Runnable_WiperSpeed(VAR(void,AUTOMATIC)){
 		}
 
 	Rte_Call_WiperSpeedDio_R_IO__IoHwAb_Q_PwmSetDutyCycle(Duty_Cycle);
+	Rte_Call_WdgM_CheckpointReached(SE_TP_WiperSpeed,CP_ID_2);
 }
