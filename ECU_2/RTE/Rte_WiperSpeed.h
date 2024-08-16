@@ -5,11 +5,11 @@
 #include <Rte_DataHandleType.h>
 
 
-FUNC(void,RTE_CODE) Rte_COMCbk_igLOT_Signal_Speed_Rx(VAR(void,AUTOMATIC));
+FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Speed_Rx(VAR(void,AUTOMATIC));
 
 
-extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_WiperSpeed_R_SpeedMotor( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data );
-#define Rte_Read_R_SpeedMotor Rte_Read_WiperSpeed_R_SpeedMotor
+extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Read_WiperSpeed_R_SpeedMotor_WiperControlSpeedData( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data );
+#define Rte_Read_R_SpeedMotor_WiperControlSpeedData Rte_Read_WiperSpeed_R_SpeedMotor_WiperControlSpeedData
 
 FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Call_WiperSpeedDio_R_IO__IoHwAb_Q_PwmSetDutyCycle(P2VAR(AppIo_IoHwAb_Q_DioIdType, AUTOMATIC) id, VAR(AUTOSAR_uint16, AUTOMATIC) duty_cycle )
 

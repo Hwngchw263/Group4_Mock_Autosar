@@ -13,8 +13,7 @@ FUNC(void,SprayFluid_CODE) Runnable_WiperSpeed(VAR(void,AUTOMATIC)){
 	uint8_t speed;
 	//Checkpoint start
 	Rte_Call_WdgM_CheckpointReached(SE_TP_WiperSpeed,CP_ID_1);
-	//rp port
-	Rte_Read_WiperSpeed_R_SpeedMotor(&speed);
+	Rte_Read_WiperSpeed_R_SpeedMotor_WiperControlSpeedData(&speed);
 	VAR(AUTOSAR_uint16,AUTOMATIC) Duty_Cycle;
 		switch (speed)
 		{

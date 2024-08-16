@@ -12,7 +12,7 @@
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 #include "Rte_Type.h"
-
+#include "Rte_DataHandleType.h"
 #include "Os.h"
 #include "Com.h"
 #include "Rte_Internal.h"
