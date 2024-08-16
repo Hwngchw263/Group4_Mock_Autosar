@@ -1,13 +1,8 @@
 #ifndef RTE_WIPER_CONTROL_H
 #define RTE_WIPER_CONTROL_H
 
-#include "WiperLevel_SWC.h"
-
-#define RTE_E_OK        0x00      
-#define RTE_E_NOT_OK    0x01 
-typedef uint8_t Std_ReturnType;
-
-
+#include "Rte_WiperLevel_Type.h"
+#include "Rte_DataHandleType.h"
 
 extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_AppComTxRx_P_ActuatorFluidControl_SprayFluid( VAR(MessageSignal, AUTOMATIC) in);
 #define Rte_Write_P_ActuatorFluidControl_SprayFluid Rte_Write_AppComTxRx_P_ActuatorFluidControl_SprayFluid

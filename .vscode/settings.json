@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "rte_wiperlevel_type.h": "c",
+        "rte_wiperleveldio.h": "c"
+    }
+}

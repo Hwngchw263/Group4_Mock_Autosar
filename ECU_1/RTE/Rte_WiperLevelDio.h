@@ -8,24 +8,20 @@
 /* Note        :                                                              */
 /******************************************************************************/
 
-#ifndef RTE_WIPERLEVEL_H
-#define RTE_WIPERLEVEL_H
+#ifndef RTE_WIPERLEVELDIO_H
+#define RTE_WIPERLEVELDIO_H
 
 
 /*----------------------------------------------------------------------------*/
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 
-#include "WiperLevel_SWC.h"
-
+#include "Rte_WiperLevel_Type.h"
+#include "Rte_DataHandleType.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
-#define RTE_E_OK        0x00      
-#define RTE_E_NOT_OK    0x01 
-typedef uint8_t Std_ReturnType;
 
 /*----------------------------------------------------------------------------*/
 /* function prototype declarations                                            */
@@ -43,6 +39,6 @@ extern FUNC(Std_ReturnType, RTE_CODE_EcucPartition_0) Rte_Write_WiperLevelDio_P_
 #endif /* __cplusplus */
 
 
-#endif /* RTE_WIPERLEVEL_H */
+#endif /* RTE_WIPERLEVELDIO_H */
 
-/* End of Rte_WiperLevel.h */
+/* End of Rte_WiperLevelDio.h */
