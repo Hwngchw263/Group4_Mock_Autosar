@@ -5,9 +5,7 @@
 #include "SWC_UserControl.h"
 
 // Function prototypes
-void WiperLeverControl_Init(void);
-void WiperLeverControl_MainFunction(void);
-void ProcessWiperMode(void);
-void ProcessWiperSpeed(void);
+void Runnable_ProcessWiperMode(void);
+void Runnable_ProcessWiperSpeed(void);
 
 #endif /* WIPER_LEVER_CONTROL_H */
