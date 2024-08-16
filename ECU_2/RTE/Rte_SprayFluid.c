@@ -1,7 +1,22 @@
+/******************************************************************************/
+/* Copyright   :                                                              */
+/* System Name :                                                              */
+/* File Name   : Rte_SprayFluid.c                                             */
+/* Version     : v1.0.0                                                       */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : Group 4                                                      */
+/* Note        :                                                              */
+/******************************************************************************/
+
 /*----------------------------------------------------------------------------*/
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 #include"Rte_SprayFluid.h"
+
+/*----------------------------------------------------------------------------*/
+/* variables                                                                  */
+/*----------------------------------------------------------------------------*/
+VAR(boolean, AUTOMATIC) RTE_CE_SprayFluidRun;
 
 /*****************************************************************************************/
 /* ModuleID    :                                                                         */
@@ -49,6 +64,8 @@ FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Spray_Rx(VAR(void,AUTOMATIC)){
         (void)Com_ReceiveSignal(ComConf_ComSignal_Signal_Spray_Rx,&Rte_Read_SprayFluid_R_FluidMotor_WiperControlSprayData_value);
         //only set os event
         (void)SetEvent(Acuator Task,Os_CE_Receive_Signal);
+        //Set event Rte
+        RTE_CE_SprayFluidRun = TRUE;
     }
 }
 

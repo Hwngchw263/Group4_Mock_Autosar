@@ -12,7 +12,7 @@
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 #include "Rte_Type.h"
-#include "Rte_DataHandleType.h"
+
 #include "Os.h"
 #include "Com.h"
 #include "Rte_Internal.h"
@@ -60,9 +60,11 @@ TASK (ActuatorTask) {
 
                 if ( RTE_CE_WiperSpeed == TRUE ) {
                         Rte_WiperSpeed();
+                        RTE_CE_WiperSpeed = FALSE;
                     }
                 if ( RTE_CE_SprayFluidRun == TRUE ) {
                         Rte_SprayFluid();
+                        RTE_CE_SprayFluidRun = FALSE:
                     }
             } else {
               /* No treatment */

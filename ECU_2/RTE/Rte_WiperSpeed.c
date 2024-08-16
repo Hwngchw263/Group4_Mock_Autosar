@@ -1,4 +1,22 @@
+/******************************************************************************/
+/* Copyright   :                                                              */
+/* System Name :                                                              */
+/* File Name   : Rte_WiperSpeed.c                                             */
+/* Version     : v1.0.0                                                       */
+/* Contents    : Ecu Configuration(Ecuc)                                      */
+/* Author      : Group 4                                                      */
+/* Note        :                                                              */
+/******************************************************************************/
+
+/*----------------------------------------------------------------------------*/
+/* include headers                                                            */
+/*----------------------------------------------------------------------------*/
 #include"Rte_WiperSpeed.h"
+
+/*----------------------------------------------------------------------------*/
+/* variables                                                                  */
+/*----------------------------------------------------------------------------*/
+VAR(boolean, AUTOMATIC) RTE_CE_WiperSpeed;
 
 /*****************************************************************************************/
 /* ModuleID    :                                                                         */
@@ -45,6 +63,9 @@ FUNC(void,RTE_CODE) Rte_COMCbk_Signal_Speed_Rx(VAR(void,AUTOMATIC)){
         (void)Com_ReceiveSignal(ComConf_ComSignal_Signal_Speed_Rx,&Rte_Read_WiperSpeed_R_SpeedMotor_WiperControlSpeedData_value);
         //only set os event
         (void)SetEvent(Acuator Task,Os_CE_Receive_Signal);
+        //Set event Rte
+        RTE_CE_WiperSpeed = TRUE;
+         
     }
 }
 
