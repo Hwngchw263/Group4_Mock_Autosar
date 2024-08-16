@@ -4,7 +4,7 @@
 /* File Name   : Rte_Partition_EcucPartition_0.c                              */
 /* Version     : v2.2.2                                                       */
 /* Contents    : Ecu Configuration(Ecuc)                                      */
-/* Author      : QINeS Ecuc Generator 2019.12 (Java)                          */
+/* Author      : Group 4                   								      */
 /* Note        :                                                              */
 /******************************************************************************/
 
@@ -20,7 +20,16 @@
 /*----------------------------------------------------------------------------*/
 /* variables                                                                  */
 /*----------------------------------------------------------------------------*/
+extern VAR(uint8, AUTOMATIC) Rte_status;
+extern VAR(uint8, AUTOMATIC) SchM_status;
+extern VAR(boolean, AUTOMATIC) Rte_periodically_event_activation;
+extern VAR(boolean, AUTOMATIC) SchM_periodically_event_activation;
+extern VAR(uint8, AUTOMATIC) Rte_partition_status_EcucPartition_0;
+extern VAR(uint32, AUTOMATIC) Rte_DisableEventList[83];
 
+extern VAR(boolean, AUTOMATIC) RTE_CE_WiperMode;
+extern VAR(boolean, AUTOMATIC) RTE_CE_SprayFluidMode;
+extern VAR(boolean, AUTOMATIC) RTE_TE_Read_100ms;
 /*----------------------------------------------------------------------------*/
 /* functions and function style macros                                        */
 /*----------------------------------------------------------------------------*/
@@ -46,23 +55,30 @@ extern void Runnable_ProcessSprayFluid(void);
 
 TASK(ProcessTask)
 {
-    EventMaskType ev;
+    VAR(EventMaskType, AUTOMATIC) ev;
+	
 	for(;;)
 	{
-		WaitEvent(RTE_TE_Read_100ms|RTE_CE_WiperMode|RTE_CE_SprayFluidMode);
-		GetEvent(ProcessTask, &ev);
-		ClearEvent(Event& (RTE_TE_Read_100ms|RTE_CE_WiperMode|RTE_CE_SprayFluidMode));
-		if((ev & RTE_TE_Read_100ms) != (EventMaskType)0)
-		{
-			Runnable_ReadUserInput_100ms();		
-		}
-		if((ev & RTE_CE_WiperMode) != (EventMaskType)0)
-		{
-			Runnable_ProcessWiperMode();
-		}
-		if((ev & RTE_CE_SprayFluidMode) != (EventMaskType)0)
-		{
-			Runnable_ProcessSprayFluid();
+		(VAR(void, AUTOMATIC))WaitEvent(Os_TE_Wiper_Level_100ms);
+		Event = 0U;
+		(VAR(void, AUTOMATIC))GetEvent(ProcessTask, &ev);
+
+		if((Rte_status == RTE_STATUS_RUN) && (Rte_partition_status_EcucPartition_0 == RTE_PARTITION_STATUS_RUNNING) && (SchM_status == SCHM_STATUS_RUN)) {
+			if((ev & Os_TE_Wiper_Level_100ms) > 0U) {
+				ClearEvent(Os_TE_Wiper_Level_100ms);
+				if( RTE_TE_Read_100ms == TRUE)
+				{
+					Runnable_ReadUserInput_100ms();		
+				}
+				if(RTE_CE_WiperMode == TRUE)
+				{
+					Runnable_ProcessWiperMode();
+				}
+				if(RTE_CE_SprayFluidMode == TRUE)
+				{
+					Runnable_ProcessSprayFluid();
+				}
+			}
 		}
 		
    }

@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "rte_wiperlevel.h": "c"
+        "rte_wiperlevel.h": "c",
+        "rte_wiperleveldio.h": "c"
     }
 }
