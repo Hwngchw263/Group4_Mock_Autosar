@@ -10,8 +10,8 @@ FUNC(void, WiperLevelDio_CODE) Runnable_ReadUserInput_100ms(VAR(void, AUTOMATIC)
     // Read the raw binary data from the input port
     Rte_Call_R_IO__IoHwAb_Q_DioReadChannelGroup(1, &rawData);
     // Decode the raw binary data
-    leverData.wiperMode = rawData & 0x03;            // Extract bits 0-1 for wiper mode
-    leverData.sprayActive = (rawData & 0x04) >> 2;   // Extract bit 2 for spray status
+    leverData.wiperMode = WIPERMODE(rawData);            // Extract bits 0-1 for wiper mode
+    leverData.sprayActive = SPRAYACTIVE(rawData);   // Extract bit 2 for spray status
     
     Rte_Write_P_Position_WiperLeverData(leverData);
 }

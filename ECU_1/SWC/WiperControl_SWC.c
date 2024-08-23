@@ -1,4 +1,4 @@
-#include "SWC_WiperControl.h"
+#include "WiperControl_SWC.h"
 #include "Rte_WiperControl.h"
 
 
@@ -16,22 +16,22 @@ FUNC(void, WiperControl_CODE) Runnable_ProcessWiperMode(VAR(void, AUTOMATIC)) {
     switch (leverData.wiperMode) {
         case WIPER_MODE_OFF:
             // Stop the wiper motor
-            Rte_Write_P_ActuatorWiperControl_WiperSpeed(0);
+            Rte_Write_P_ActuatorWiperControl_WiperSpeed(OFF_SPEED);
             break;
             
         case WIPER_MODE_LOW:
             // Set wiper motor to low speed
-           Rte_Write_P_ActuatorWiperControl_WiperSpeed(50);
+           Rte_Write_P_ActuatorWiperControl_WiperSpeed(MEDIUM_SPEED);
             break;
 
         case WIPER_MODE_HIGH:
             // Set wiper motor to high speed
-           Rte_Write_P_ActuatorWiperControl_WiperSpeed(75);
+           Rte_Write_P_ActuatorWiperControl_WiperSpeed(MAX_SPEED);
             break;
 
         default:
             // Handle unexpected mode
-           Rte_Write_P_ActuatorWiperControl_WiperSpeed(0);
+           Rte_Write_P_ActuatorWiperControl_WiperSpeed(OFF_SPEED);
             break;
     }
     //CheckPoint end

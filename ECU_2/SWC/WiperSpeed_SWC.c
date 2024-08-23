@@ -9,14 +9,16 @@ FUNC(void,SprayFluid_CODE) Runnable_WiperSpeed(VAR(void,AUTOMATIC)){
 	VAR(AUTOSAR_uint16,AUTOMATIC) Duty_Cycle;
 		switch (speed)
 		{
+			case ZERO_SPEED:
+				Duty_Cycle = ZERO_DUTY_CYCLE;
 			case LOW_SPEED:
 				Duty_Cycle = LOW_DUTY_CYCLE;
 				break;
 			case HIGH_SPEED:
-				Duty_Cycle= HIGH_DUTY_CYCLE;
+				Duty_Cycle = HIGH_DUTY_CYCLE;
 				break;
 			default:
-				Duty_Cycle = 0; // Stop motor
+				Duty_Cycle = ZERO_DUTY_CYCLE; // Stop motor
 				break;
 		}
 

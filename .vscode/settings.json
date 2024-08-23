@@ -1,7 +1,10 @@
 {
     "files.associations": {
         "rte_wiperlevel_type.h": "c",
-        "rte_wiperleveldio.h": "c"
+        "rte_wiperleveldio.h": "c",
+        "wiperlevel_swc.h": "c",
+        "rte_wipercontrol.h": "c",
+        "wipercontrol_swc.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
